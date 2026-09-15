@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07172b">
+  <meta name="description" content="Книжное путешествие для детей по мотивам сказочной повести Грейс Лин «Где гора говорит с луной».">
+  <title>Где гора говорит с луной — книжное путешествие</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307172b'/%3E%3Ccircle cx='39' cy='23' r='15' fill='%23f4ddb0'/%3E%3Cpath d='M5 55 29 22l9 13 7-9 14 29z' fill='%232a5278'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: dark;
+      --night: #07172b;
+      --night-soft: #0d2742;
+      --ink: #102033;
+      --moon: #f3ddb0;
+      --paper: #fff8e9;
+      --mist: #dbe8f3;
+      --blue: #89acc9;
+      --coral: #d46143;
+      --glass: rgba(12, 34, 57, .62);
+      --glass-light: rgba(255, 255, 255, .10);
+      --line: rgba(255, 248, 233, .22);
+      --shadow: 0 28px 80px rgba(0, 7, 18, .34);
+      --radius: 32px;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --serif: Georgia, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 82% 8%, rgba(67, 112, 151, .28), transparent 30rem),
+        linear-gradient(180deg, #07172b 0%, #0b2038 58%, #061321 100%);
+      color: var(--paper);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--moon); outline-offset: 4px; }
+
+    .shell { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--moon);
+      font-size: .78rem;
+      font-weight: 650;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      min-height: 100svh;
+      position: relative;
+      display: grid;
+      align-items: center;
+      padding: 32px 0 48px;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 38%, rgba(244, 221, 176, .10), transparent 32%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .88fr) minmax(420px, 1.12fr);
+      gap: clamp(36px, 7vw, 94px);
+      align-items: center;
+    }
+
+    .hero-copy { padding-block: 32px; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
+    h1 {
+      margin: 0;
+      max-width: 670px;
+      font-size: clamp(3.1rem, 7vw, 6.9rem);
+      line-height: .92;
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 610px;
+      margin: 28px 0 0;
+      color: rgba(255, 248, 233, .82);
+      font-family: var(--serif);
+      font-size: clamp(1.28rem, 2.4vw, 1.8rem);
+      line-height: 1.35;
+      text-wrap: balance;
+    }
+
+    .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 34px; }
+    .button {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      padding: 13px 24px;
+      background: var(--paper);
+      color: var(--ink);
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .18);
+      transition: transform .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: #fff; }
+    .quiet-link { color: var(--mist); text-underline-offset: 5px; }
+
+    .hero-art {
+      position: relative;
+      border-radius: 42px;
+      overflow: hidden;
+      aspect-ratio: .92;
+      min-height: 600px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .hero-art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 54%; }
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 62%, rgba(3, 13, 24, .68));
+      pointer-events: none;
+    }
+
+    .glass-card {
+      position: absolute;
+      z-index: 2;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      padding: 20px 22px;
+      border: 1px solid rgba(255,255,255,.27);
+      border-radius: 26px;
+      background: rgba(7, 23, 43, .58);
+      backdrop-filter: blur(22px) saturate(120%);
+      -webkit-backdrop-filter: blur(22px) saturate(120%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 18px 42px rgba(0, 4, 12, .22);
+    }
+    .glass-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; }
+    .fact-label { display: block; color: rgba(255,255,255,.58); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+    .fact-value { display: block; margin-top: 3px; color: var(--paper); font-size: .98rem; font-weight: 650; }
+
+    section { position: relative; padding: clamp(78px, 11vw, 150px) 0; }
+    .section-head { max-width: 790px; }
+    h2 {
+      margin: 0;
+      font-size: clamp(2.35rem, 5.5vw, 5rem);
+      line-height: 1.02;
+      letter-spacing: -.035em;
+      text-wrap: balance;
+    }
+    .section-intro { max-width: 740px; margin: 26px 0 0; color: rgba(255,248,233,.74); font-size: clamp(1.08rem, 2vw, 1.3rem); }
+
+    .not-quiz { border-block: 1px solid var(--line); background: rgba(4, 16, 30, .28); }
+    .statement {
+      max-width: 1000px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      line-height: 1.12;
+      letter-spacing: -.03em;
+      color: rgba(255,248,233,.96);
+    }
+    .statement em { color: var(--moon); font-style: normal; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 54px;
+    }
+    .step {
+      min-height: 250px;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .step-no { color: var(--moon); font-family: var(--serif); font-size: 1.1rem; }
+    .step h3 { margin: 42px 0 12px; font-size: 1.7rem; line-height: 1.15; }
+    .step p { margin: 0; color: rgba(255,248,233,.68); }
+
+    .story-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(38px, 8vw, 120px); align-items: start; }
+    .moon-orb {
+      width: min(340px, 72vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 32%, #fff8dd 0 9%, #f2d9a7 44%, #d1a565 100%);
+      box-shadow: 0 0 100px rgba(243,221,176,.20), inset -28px -24px 55px rgba(93,63,40,.18);
+      opacity: .95;
+    }
+    .story-copy p { margin: 0 0 24px; font-size: clamp(1.14rem, 2.2vw, 1.45rem); color: rgba(255,248,233,.78); }
+    .story-copy .follow { color: var(--paper); font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; }
+
+    .answer-card {
+      padding: clamp(30px, 6vw, 64px);
+      border-radius: 40px;
+      background: rgba(208, 226, 239, .10);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,.09);
+    }
+    .answer-card h2 { max-width: 850px; }
+    .answer { max-width: 820px; margin: 26px 0 0; font-size: clamp(1.12rem, 2vw, 1.36rem); color: rgba(255,248,233,.78); }
+
+    .tea { overflow: hidden; }
+    .tea::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -180px;
+      top: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 97, 67, .20), transparent 68%);
+      filter: blur(8px);
+    }
+    .tea-copy { max-width: 810px; }
+    .tea-copy p { max-width: 650px; color: rgba(255,248,233,.72); font-size: 1.2rem; }
+
+    .details {
+      padding: clamp(32px, 6vw, 64px);
+      border-radius: 42px;
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .details h2 { max-width: 760px; }
+    .details-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin-top: 38px; overflow: hidden; border: 1px solid rgba(16,32,51,.12); border-radius: 24px; background: rgba(16,32,51,.12); }
+    .detail { padding: 22px; background: var(--paper); }
+    .detail dt { color: rgba(16,32,51,.56); font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; }
+    .detail dd { margin: 6px 0 0; font-size: 1.15rem; font-weight: 700; }
+    .details-note { margin: 24px 0 0; color: rgba(16,32,51,.65); }
+
+    footer { padding: 28px 0 110px; color: rgba(255,248,233,.48); font-size: .9rem; }
+    .mobile-cta { display: none; }
+
+    [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .8s ease, transform .8s ease; }
+    [data-reveal].visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .hero { padding-top: 22px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 18px; }
+      .hero-copy { padding: 24px 0 8px; }
+      h1 { font-size: clamp(3.2rem, 15vw, 6rem); }
+      .hero-art { min-height: 610px; aspect-ratio: .78; }
+      .steps { grid-template-columns: 1fr; }
+      .step { min-height: auto; }
+      .step h3 { margin-top: 26px; }
+      .story-grid { grid-template-columns: 1fr; }
+      .moon-orb { width: 190px; }
+    }
+
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 28px, 1160px); }
+      body { font-size: 16px; }
+      .hero { min-height: auto; padding-bottom: 32px; }
+      .eyebrow { font-size: .7rem; }
+      h1 { font-size: clamp(3rem, 16vw, 4.8rem); }
+      .lead { font-size: 1.22rem; }
+      .hero-actions .button { width: 100%; }
+      .quiet-link { margin-inline: auto; }
+      .hero-art { min-height: 520px; border-radius: 30px; }
+      .glass-card { left: 12px; right: 12px; bottom: 12px; padding: 17px; border-radius: 22px; }
+      .glass-grid { gap: 12px 16px; }
+      .fact-value { font-size: .9rem; }
+      section { padding-block: 74px; }
+      .steps { margin-top: 36px; }
+      .details { border-radius: 30px; }
+      .details-grid { grid-template-columns: 1fr; }
+      footer { padding-bottom: 96px; }
+      .mobile-cta {
+        display: block;
+        position: fixed;
+        z-index: 20;
+        left: 14px;
+        right: 14px;
+        bottom: 12px;
+        padding: 14px 18px;
+        border: 1px solid rgba(255,255,255,.26);
+        border-radius: 18px;
+        background: rgba(246, 235, 210, .88);
+        color: var(--ink);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: 0 14px 36px rgba(0,0,0,.28);
+        text-align: center;
+        text-decoration: none;
+        font-weight: 750;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="shell hero-grid">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">Книжное путешествие для детей</p>
+          <h1 id="page-title">Где гора говорит с луной</h1>
+          <p class="lead">Книгу можно не только читать. В неё можно играть.</p>
+          <div class="hero-actions">
+            <a class="button" href="#journey">Отправиться в путешествие</a>
+            <a class="quiet-link" href="#details">Условия участия</a>
+          </div>
+        </div>
+
+        <div class="hero-art" data-reveal>
+          <img src="assets/moon-mountain-scene.webp" alt="Девочка идёт по горной дороге к сияющей луне; в облаках виден дракон" width="1122" height="1124">
+          <aside class="glass-card" aria-label="Основная информация">
+            <div class="glass-grid">
+              <div><span class="fact-label">Даты</span><span class="fact-value">Скоро</span></div>
+              <div><span class="fact-label">Возраст</span><span class="fact-value">Уточняется</span></div>
+              <div><span class="fact-label">Место</span><span class="fact-value">Будет объявлено</span></div>
+              <div><span class="fact-label">Формат</span><span class="fact-value">Командная игра</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="not-quiz" id="journey">
+      <div class="shell">
+        <p class="statement" data-reveal>Это не викторина и не проверка знания книги. Это путешествие, в котором <em>история оживает</em> вокруг участников.</p>
+        <div class="steps">
+          <article class="step" data-reveal><span class="step-no">01</span><h3>Отправиться вслед за Миньли</h3><p>Познакомиться с героями и постепенно войти в мир китайских легенд.</p></article>
+          <article class="step" data-reveal><span class="step-no">02</span><h3>Действовать вместе</h3><p>Выполнять необычные задания, искать решения и помогать друг другу.</p></article>
+          <article class="step" data-reveal><span class="step-no">03</span><h3>Открыть историю</h3><p>Собрать её по частям — без тестов, оценок и заранее выученных ответов.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell story-grid">
+        <div class="moon-orb" aria-hidden="true" data-reveal></div>
+        <div class="story-copy" data-reveal>
+          <p class="eyebrow">Начало пути</p>
+          <p>Миньли живёт у подножия Бесплодной горы и каждый вечер слушает удивительные истории своего отца. Однажды она решает отправиться в путь, чтобы найти ответ на очень важный вопрос.</p>
+          <p class="follow">Мы последуем за ней.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="answer-card" data-reveal>
+          <p class="eyebrow">Важный вопрос</p>
+          <h2>Нужно ли читать книгу заранее?</h2>
+          <p class="answer">Нет. История будет открываться во время игры. Познакомиться с героями и сюжетом смогут все участники — а после путешествия, возможно, захочется прочитать книгу целиком.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tea">
+      <div class="shell tea-copy" data-reveal>
+        <p class="eyebrow">После долгого пути</p>
+        <h2>Драконий чай и угощение</h2>
+        <p>Путешествию нужен тёплый финал: время перевести дух, поделиться впечатлениями и почувствовать, что книга стала немного ближе.</p>
+      </div>
+    </section>
+
+    <section id="details">
+      <div class="shell">
+        <div class="details" data-reveal>
+          <p class="eyebrow" style="color:#80512f">Условия участия</p>
+          <h2>Присоединиться к путешествию</h2>
+          <dl class="details-grid">
+            <div class="detail"><dt>Даты и время</dt><dd>Уточняются</dd></div>
+            <div class="detail"><dt>Возраст участников</dt><dd>Уточняется</dd></div>
+            <div class="detail"><dt>Место проведения</dt><dd>Будет объявлено</dd></div>
+            <div class="detail"><dt>Стоимость</dt><dd>Уточняется</dd></div>
+          </dl>
+          <p class="details-note">Контакт и ссылка для записи появятся здесь после согласования организационных деталей.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell">По мотивам сказочной повести Грейс Лин «Где гора говорит с луной».</div></footer>
+  <a class="mobile-cta" href="#details">Условия участия</a>
+
+  <script>
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const items = document.querySelectorAll('[data-reveal]');
+    if (reduced || !('IntersectionObserver' in window)) {
+      items.forEach((item) => item.classList.add('visible'));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      items.forEach((item) => observer.observe(item));
+    }
+  </script>
+</body>
+</html>
