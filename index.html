@@ -161,7 +161,7 @@
       height: 100%;
       object-fit: cover;
       object-position: 50% 47%;
-      animation: mountain-approach 22s ease-in-out infinite alternate;
+      animation: mountain-approach 34s cubic-bezier(.42, 0, .58, 1) infinite alternate;
       will-change: transform;
     }
     .hero-art::after {
@@ -175,19 +175,39 @@
       z-index: 2;
     }
 
-    .flying-dragon {
+    .dragon-flight {
       position: absolute;
       z-index: 3;
       width: min(54%, 720px);
-      height: auto;
       top: 8%;
       right: -11%;
-      opacity: .82;
-      filter: drop-shadow(0 0 22px rgba(218, 235, 248, .18));
       transform-origin: 55% 50%;
-      animation: dragon-flight 16s ease-in-out infinite;
+      animation: dragon-glide 27s cubic-bezier(.42, 0, .58, 1) infinite alternate;
       pointer-events: none;
       will-change: transform;
+    }
+    .dragon-flight::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 62%;
+      height: 32%;
+      left: 22%;
+      bottom: 20%;
+      border-radius: 50%;
+      background: rgba(198, 222, 239, .16);
+      filter: blur(30px);
+      animation: dragon-mist 8s ease-in-out infinite alternate;
+    }
+    .flying-dragon {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: .76;
+      filter: drop-shadow(0 0 18px rgba(218, 235, 248, .14));
+      transform-origin: 36% 52%;
+      animation: dragon-breathe 6.5s ease-in-out infinite;
+      will-change: transform, filter, opacity;
     }
     .detail dd { overflow-wrap: anywhere; }
 
@@ -316,13 +336,31 @@
 
     @keyframes atmosphere { to { transform: translate3d(4%, -2%, 0) scale(1.05); } }
     @keyframes mountain-approach {
-      from { transform: scale(var(--zoom-start, 1.025)); }
-      to { transform: scale(var(--zoom-end, 1.08)) translateY(-.7%); }
+      from { transform: scale(1.018) translate3d(0, 0, 0); }
+      to { transform: scale(1.085) translate3d(0, -.55%, 0); }
     }
-    @keyframes dragon-flight {
-      0%, 100% { transform: translate3d(6%, 7%, 0) rotate(-2deg) scale(.92); }
-      35% { transform: translate3d(-12%, -4%, 0) rotate(1.5deg) scale(1); }
-      68% { transform: translate3d(-25%, 3%, 0) rotate(-1deg) scale(.96); }
+    @keyframes dragon-glide {
+      0% { transform: translate3d(8%, 5%, 0) rotate(-1.5deg) scale(.94); }
+      28% { transform: translate3d(-2%, -1%, 0) rotate(-.2deg) scale(.97); }
+      58% { transform: translate3d(-14%, 2%, 0) rotate(1deg) scale(1); }
+      82% { transform: translate3d(-22%, -2%, 0) rotate(.25deg) scale(.98); }
+      100% { transform: translate3d(-28%, 3%, 0) rotate(-.8deg) scale(.96); }
+    }
+    @keyframes dragon-breathe {
+      0%, 100% {
+        transform: rotate(-.35deg) skewX(0deg) scaleX(1) scaleY(1);
+        opacity: .72;
+        filter: drop-shadow(0 0 15px rgba(218, 235, 248, .12));
+      }
+      50% {
+        transform: rotate(.55deg) skewX(-.8deg) scaleX(1.012) scaleY(1.028);
+        opacity: .82;
+        filter: drop-shadow(0 0 25px rgba(218, 235, 248, .22));
+      }
+    }
+    @keyframes dragon-mist {
+      from { transform: translate3d(5%, 4%, 0) scale(.88); opacity: .28; }
+      to { transform: translate3d(-10%, -5%, 0) scale(1.14); opacity: .62; }
     }
     @keyframes moon-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
     @keyframes glow-drift { to { transform: translate(-80px, 30px) scale(1.08); } }
@@ -340,7 +378,7 @@
       h1 { font-size: clamp(3.4rem, 6.8vw, 5.4rem); }
       .hero-copy { width: min(520px, 52vw); }
       .hero-art { min-height: 650px; }
-      .flying-dragon { width: 62%; right: -18%; }
+      .dragon-flight { width: 62%; right: -18%; }
     }
 
     @media (max-width: 900px) {
@@ -358,7 +396,7 @@
       .hero-art { height: 72svh; min-height: 620px; max-height: 780px; border-radius: 30px; }
       .hero-art .scene { object-position: 50% 50%; }
       .hero-art::after { background: linear-gradient(180deg, transparent 70%, rgba(3, 13, 24, .24)); }
-      .flying-dragon { width: 76%; top: 8%; right: -28%; opacity: .76; }
+      .dragon-flight { width: 76%; top: 8%; right: -28%; }
       .steps { grid-template-columns: 1fr; }
       .step { min-height: auto; }
       .step h3 { margin-top: 26px; }
@@ -371,7 +409,7 @@
       h2 { font-size: clamp(2.2rem, 11vw, 3.5rem); }
       .statement { font-size: clamp(1.9rem, 9vw, 3rem); }
       .hero-art { height: 70svh; min-height: 560px; }
-      .flying-dragon { width: 88%; right: -38%; }
+      .dragon-flight { width: 88%; right: -38%; }
       .steps { gap: 30px; }
       .step { padding-top: 20px; }
       .details-grid { grid-template-columns: 1fr; }
@@ -389,7 +427,7 @@
       .quiet-link { margin-inline: auto; }
       .hero-art { height: 72svh; min-height: 520px; border-radius: 24px; }
       .hero-art .scene { object-position: 50% 50%; }
-      .flying-dragon { width: 96%; top: 10%; right: -47%; opacity: .72; }
+      .dragon-flight { width: 96%; top: 10%; right: -47%; }
       section { padding-block: 74px; }
       .steps { margin-top: 36px; }
       .details { border-radius: 28px; }
@@ -420,7 +458,7 @@
       h1 { font-size: 2.78rem; }
       .lead { font-size: 1.08rem; }
       .hero-art { min-height: 480px; }
-      .flying-dragon { width: 104%; right: -56%; }
+      .dragon-flight { width: 104%; right: -56%; }
       .button { padding-inline: 18px; }
       .details { padding: 24px 19px; }
       .mobile-cta { left: 10px; right: 10px; bottom: 9px; }
@@ -437,7 +475,7 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
       [data-reveal] { opacity: 1; transform: none; }
-      body::before, .hero-art .scene, .flying-dragon, .moon-orb, .tea::before, .magic-dust span { animation: none !important; }
+      body::before, .hero-art .scene, .dragon-flight, .flying-dragon, .dragon-flight::after, .moon-orb, .tea::before, .magic-dust span { animation: none !important; }
     }
   </style>
 </head>
@@ -457,7 +495,9 @@
 
         <div class="hero-art" data-reveal>
           <img class="scene" src="assets/moon-mountain-scene-v2.webp" alt="Девочка идёт по горной дороге к сияющей луне" width="1254" height="1254">
-          <img class="flying-dragon" src="assets/flying-dragon.webp" alt="" width="1400" height="700" aria-hidden="true">
+          <div class="dragon-flight" aria-hidden="true">
+            <img class="flying-dragon" src="assets/flying-dragon.webp" alt="" width="1400" height="700">
+          </div>
           <div class="magic-dust" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         </div>
       </div>
@@ -540,25 +580,6 @@
       items.forEach((item) => observer.observe(item));
     }
 
-    if (!reduced) {
-      const art = document.querySelector('.hero-art');
-      let ticking = false;
-      const updateApproach = () => {
-        const heroHeight = Math.max(art.offsetHeight, 1);
-        const progress = Math.min(Math.max(window.scrollY / heroHeight, 0), 1);
-        const zoom = progress * (window.innerWidth < 901 ? 0.035 : 0.075);
-        art.style.setProperty('--zoom-start', (1.025 + zoom).toFixed(3));
-        art.style.setProperty('--zoom-end', (1.08 + zoom).toFixed(3));
-        ticking = false;
-      };
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(updateApproach);
-          ticking = true;
-        }
-      }, { passive: true });
-      updateApproach();
-    }
   </script>
 </body>
 </html>
