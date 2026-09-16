@@ -25,6 +25,8 @@
       --radius: 32px;
       --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --serif: Georgia, "Times New Roman", serif;
+      --display: "Noto Serif CJK SC", "Songti SC", "STSong", "Yu Mincho", Georgia, "Times New Roman", serif;
+      --seal: #b84e3d;
     }
 
     * { box-sizing: border-box; }
@@ -65,11 +67,12 @@
     .shell { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
     .eyebrow {
       margin: 0 0 18px;
+      padding-left: .72rem;
+      border-left: 3px solid rgba(184, 78, 61, .76);
       color: var(--moon);
       font-size: .78rem;
       font-weight: 650;
-      letter-spacing: .18em;
-      text-transform: uppercase;
+      letter-spacing: .11em;
     }
 
     .hero {
@@ -107,21 +110,42 @@
       padding: 0;
       text-shadow: 0 2px 24px rgba(0, 9, 22, .46);
     }
-    h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 500; }
     h1 {
       margin: 0;
       max-width: 670px;
-      font-size: clamp(3.1rem, 7vw, 6.9rem);
-      line-height: .92;
-      letter-spacing: -.045em;
+      font-size: clamp(3.1rem, 6.5vw, 6.5rem);
+      line-height: .96;
+      letter-spacing: .015em;
       text-wrap: balance;
+    }
+    .title-line { display: block; width: max-content; max-width: 100%; }
+    .title-line:nth-child(2) { margin-left: .36em; }
+    .title-line:nth-child(3) { margin-left: 1.22em; }
+    .title-seal {
+      display: inline-grid;
+      width: 1.52em;
+      height: 1.52em;
+      margin: .28em 0 0 1.28em;
+      place-items: center;
+      border: 1px solid rgba(255, 236, 219, .62);
+      border-radius: 3px;
+      background: rgba(184, 78, 61, .88);
+      color: rgba(255, 245, 230, .96);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: .23em;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0;
+      box-shadow: inset 0 0 0 2px rgba(104, 28, 22, .12);
+      vertical-align: top;
     }
 
     .lead {
       max-width: 610px;
       margin: 28px 0 0;
       color: rgba(255, 248, 233, .82);
-      font-family: var(--serif);
+      font-family: var(--display);
       font-size: clamp(1.28rem, 2.4vw, 1.8rem);
       line-height: 1.35;
       text-wrap: balance;
@@ -216,9 +240,19 @@
     h2 {
       margin: 0;
       font-size: clamp(2.35rem, 5.5vw, 5rem);
-      line-height: 1.02;
-      letter-spacing: -.035em;
+      line-height: 1.08;
+      letter-spacing: .012em;
       text-wrap: balance;
+    }
+    h2::after {
+      content: "";
+      display: block;
+      width: 2.25rem;
+      height: 3px;
+      margin-top: .32em;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--seal), rgba(184, 78, 61, 0));
+      opacity: .72;
     }
     .section-intro { max-width: 740px; margin: 26px 0 0; color: rgba(255,248,233,.74); font-size: clamp(1.08rem, 2vw, 1.3rem); }
 
@@ -226,10 +260,10 @@
     .statement {
       max-width: 1000px;
       margin: 0;
-      font-family: var(--serif);
+      font-family: var(--display);
       font-size: clamp(2rem, 5vw, 4.5rem);
       line-height: 1.12;
-      letter-spacing: -.03em;
+      letter-spacing: .004em;
       color: rgba(255,248,233,.96);
     }
     .statement em { color: var(--moon); font-style: normal; }
@@ -247,7 +281,7 @@
       background: transparent;
     }
     .step-no { color: var(--moon); font-family: var(--serif); font-size: 1.1rem; }
-    .step h3 { margin: 42px 0 12px; font-size: 1.7rem; line-height: 1.15; }
+    .step h3 { margin: 42px 0 12px; font-size: 1.7rem; line-height: 1.22; letter-spacing: .018em; }
     .step p { margin: 0; color: rgba(255,248,233,.68); }
 
     .story-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(38px, 8vw, 120px); align-items: start; }
@@ -261,7 +295,7 @@
       animation: moon-float 8s ease-in-out infinite;
     }
     .story-copy p { margin: 0 0 24px; font-size: clamp(1.14rem, 2.2vw, 1.45rem); color: rgba(255,248,233,.78); }
-    .story-copy .follow { color: var(--paper); font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.1; }
+    .story-copy .follow { color: var(--paper); font-family: var(--display); font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.15; letter-spacing: .015em; }
 
     .answer-card {
       padding: clamp(30px, 6vw, 64px);
@@ -393,6 +427,9 @@
         text-shadow: none;
       }
       h1 { font-size: clamp(3.2rem, 15vw, 6rem); }
+      .title-line:nth-child(2) { margin-left: .24em; }
+      .title-line:nth-child(3) { margin-left: .78em; }
+      .title-seal { margin-left: .82em; }
       .hero-art { height: 72svh; min-height: 620px; max-height: 780px; border-radius: 30px; }
       .hero-art .scene { object-position: 50% 50%; }
       .hero-art::after { background: linear-gradient(180deg, transparent 70%, rgba(3, 13, 24, .24)); }
@@ -422,6 +459,9 @@
       .hero { min-height: auto; padding-bottom: 32px; }
       .eyebrow { font-size: .7rem; }
       h1 { font-size: clamp(3rem, 16vw, 4.8rem); }
+      .title-line:nth-child(2) { margin-left: .16em; }
+      .title-line:nth-child(3) { margin-left: .52em; }
+      .title-seal { margin-left: .56em; }
       .lead { font-size: 1.22rem; }
       .hero-actions .button { width: 100%; }
       .quiet-link { margin-inline: auto; }
@@ -456,6 +496,9 @@
     @media (max-width: 380px) {
       .shell { width: calc(100% - 22px); }
       h1 { font-size: 2.78rem; }
+      .title-line:nth-child(2) { margin-left: .1em; }
+      .title-line:nth-child(3) { margin-left: .34em; }
+      .title-seal { margin-left: .38em; }
       .lead { font-size: 1.08rem; }
       .hero-art { min-height: 480px; }
       .dragon-flight { width: 104%; right: -56%; }
@@ -485,7 +528,7 @@
       <div class="shell hero-grid">
         <div class="hero-copy" data-reveal>
           <p class="eyebrow">Книжное путешествие для детей</p>
-          <h1 id="page-title">Где гора говорит с луной</h1>
+          <h1 id="page-title"><span class="title-line">Где гора</span><span class="title-line">говорит</span><span class="title-line">с луной</span><span class="title-seal" aria-hidden="true">月</span></h1>
           <p class="lead">Книгу можно не только читать. В неё можно играть.</p>
           <div class="hero-actions">
             <a class="button" href="#journey">Отправиться в путешествие</a>
