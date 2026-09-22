@@ -348,7 +348,8 @@
     .detail { padding: 20px 0; border-top: 1px solid rgba(255,255,255,.15); }
     .detail dt { color: rgba(255,248,233,.48); font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; }
     .detail dd { margin: 6px 0 0; font-size: 1.15rem; font-weight: 700; }
-    .details-note { margin: 24px 0 0; color: rgba(255,248,233,.60); }
+    .detail a { color: inherit; text-decoration-color: rgba(243,221,176,.52); text-underline-offset: 5px; }
+    .detail a:hover { text-decoration-color: var(--moon); }
 
     footer { padding: 28px 0 110px; color: rgba(255,248,233,.48); font-size: .9rem; }
     .mobile-cta { display: none; }
@@ -600,19 +601,20 @@
           <p class="eyebrow">Условия участия</p>
           <h2>Присоединиться к путешествию</h2>
           <dl class="details-grid">
-            <div class="detail"><dt>Даты и время</dt><dd>Уточняются</dd></div>
-            <div class="detail"><dt>Возраст участников</dt><dd>Уточняется</dd></div>
-            <div class="detail"><dt>Место проведения</dt><dd>Будет объявлено</dd></div>
-            <div class="detail"><dt>Стоимость</dt><dd>Уточняется</dd></div>
+            <div class="detail"><dt>Возраст участников</dt><dd>7–12 лет</dd></div>
+            <div class="detail"><dt>Время</dt><dd>с 9:00 до 19:00</dd></div>
+            <div class="detail"><dt>Стоимость</dt><dd>16 000 рублей</dd></div>
+            <div class="detail"><dt>Запись</dt><dd><a href="tel:+79683642204">+7 (968) 364-22-04</a></dd></div>
+            <div class="detail"><dt>Адрес</dt><dd><a href="https://yandex.ru/maps/?text=%D0%B3.%20%D0%94%D0%BE%D0%BB%D0%B3%D0%BE%D0%BF%D1%80%D1%83%D0%B4%D0%BD%D1%8B%D0%B9%2C%20%D0%9B%D0%B8%D1%85%D0%B0%D1%87%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%20%D0%B4%D0%BE%D0%BC%201%2C%20%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81%205" target="_blank" rel="noopener noreferrer">г. Долгопрудный, Лихачевское шоссе, дом 1, корпус 5</a></dd></div>
+            <div class="detail"><dt>Сайт</dt><dd><a href="https://astraedu.ru/" target="_blank" rel="noopener noreferrer">astraedu.ru</a></dd></div>
           </dl>
-          <p class="details-note">Контакт и ссылка для записи появятся здесь после согласования организационных деталей.</p>
         </div>
       </div>
     </section>
   </main>
 
   <footer><div class="shell">По мотивам сказочной повести Грейс Лин «Где гора говорит с луной».</div></footer>
-  <a class="mobile-cta" href="#details">Условия участия</a>
+  <a class="mobile-cta" href="tel:+79683642204">Записаться</a>
 
   <script>
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
