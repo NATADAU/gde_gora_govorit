@@ -243,7 +243,7 @@
     }
     .detail dd { overflow-wrap: anywhere; }
 
-    section { position: relative; padding: clamp(78px, 11vw, 150px) 0; }
+    section { position: relative; padding: 80px 0; }
     .section-head { max-width: 790px; }
     h2 {
       margin: 0;
@@ -264,7 +264,10 @@
     }
     .section-intro { max-width: 740px; margin: 26px 0 0; color: rgba(255,248,233,.74); font-size: clamp(1.08rem, 2vw, 1.3rem); }
 
-    .not-quiz { background: linear-gradient(180deg, transparent, rgba(54, 91, 124, .07), transparent); }
+    .not-quiz {
+      padding-block: 92px 76px;
+      background: linear-gradient(180deg, transparent, rgba(54, 91, 124, .07), transparent);
+    }
     .statement {
       max-width: 1000px;
       margin: 0;
@@ -292,6 +295,7 @@
     .step h3 { margin: 42px 0 12px; font-size: 1.7rem; line-height: 1.22; letter-spacing: .018em; }
     .step p { margin: 0; color: rgba(255,248,233,.68); }
 
+    .story-section { padding-block: 72px; }
     .story-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(38px, 8vw, 120px); align-items: start; }
     .moon-orb {
       width: min(340px, 72vw);
@@ -305,6 +309,7 @@
     .story-copy p { margin: 0 0 24px; font-size: clamp(1.14rem, 2.2vw, 1.45rem); color: rgba(255,248,233,.78); }
     .story-copy .follow { color: var(--paper); font-family: var(--display); font-size: clamp(2rem, 4.5vw, 3.6rem); line-height: 1.15; letter-spacing: .015em; }
 
+    .answer-section { padding-block: 64px; }
     .answer-card {
       padding: clamp(30px, 6vw, 64px);
       border-radius: 34px;
@@ -317,7 +322,7 @@
     .answer-card h2 { max-width: 850px; }
     .answer { max-width: 820px; margin: 26px 0 0; font-size: clamp(1.12rem, 2vw, 1.36rem); color: rgba(255,248,233,.78); }
 
-    .tea { overflow: hidden; }
+    .tea { overflow: hidden; padding-block: 72px; }
     .tea::before {
       content: "";
       position: absolute;
@@ -334,8 +339,7 @@
     .tea-copy p { max-width: 650px; color: rgba(255,248,233,.72); font-size: 1.2rem; }
 
     #details {
-      padding-top: clamp(88px, 8vw, 120px);
-      padding-bottom: clamp(72px, 6vw, 92px);
+      padding-block: 64px 72px;
     }
     .details {
       padding: clamp(32px, 6vw, 64px);
@@ -351,7 +355,7 @@
     .details-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 34px; margin-top: 38px; }
     .detail { padding: 20px 0; border-top: 1px solid rgba(255,255,255,.15); }
     .detail dt { color: rgba(255,248,233,.48); font-size: .78rem; letter-spacing: .09em; text-transform: uppercase; }
-    .detail dd { margin: 6px 0 0; font-size: 1.15rem; font-weight: 700; text-wrap: pretty; }
+    .detail dd { margin: 6px 0 0; font-size: 1.15rem; font-weight: 700; line-height: 1.42; text-wrap: pretty; }
     .detail-compact dd { white-space: nowrap; }
     .detail a { color: inherit; text-decoration-color: rgba(243,221,176,.52); text-underline-offset: 5px; }
     .detail a:hover { text-decoration-color: var(--moon); }
@@ -423,6 +427,11 @@
     }
 
     @media (max-width: 1100px) and (min-width: 901px) {
+      section { padding-block: 70px; }
+      .not-quiz { padding-block: 78px 68px; }
+      .story-section, .tea { padding-block: 66px; }
+      .answer-section { padding-block: 58px; }
+      #details { padding-block: 58px 68px; }
       h1 { font-size: clamp(3.4rem, 6.8vw, 5.4rem); }
       .hero-copy { width: min(520px, 52vw); }
       .hero-art { min-height: 650px; }
@@ -430,6 +439,11 @@
     }
 
     @media (max-width: 900px) {
+      section { padding-block: 62px; }
+      .not-quiz { padding-block: 68px 60px; }
+      .story-section, .tea { padding-block: 60px; }
+      .answer-section { padding-block: 56px; }
+      #details { padding-block: 56px 64px; }
       .hero { padding-top: 22px; }
       .hero-grid { width: min(100% - 28px, 760px); }
       .hero-copy {
@@ -444,30 +458,28 @@
       .title-line:nth-child(2) { margin-left: .24em; }
       .title-line:nth-child(3) { margin-left: .78em; }
       .title-seal { margin-left: .82em; }
-      .hero-art { height: 72svh; min-height: 620px; max-height: 780px; border-radius: 30px; }
+      .hero-art { height: min(64svh, 680px); min-height: 540px; max-height: 680px; border-radius: 30px; }
       .hero-art .scene { object-position: 50% 50%; }
       .hero-art::after { background: linear-gradient(180deg, transparent 70%, rgba(3, 13, 24, .24)); }
       .dragon-flight { width: 76%; top: 8%; right: -28%; }
-      .steps { grid-template-columns: 1fr; }
-      .step { min-height: auto; }
-      .step h3 { margin-top: 26px; }
+      .steps { grid-template-columns: 1fr; gap: 44px; margin-top: 44px; }
+      .step { min-height: auto; padding: 24px 0 12px; }
+      .step h3 { margin-top: 22px; }
       .story-grid { grid-template-columns: 1fr; }
       .moon-orb { width: 190px; }
       .details { padding: clamp(28px, 6vw, 48px); }
     }
 
-    @media (max-width: 760px) {
-      .details-grid { grid-template-columns: 1fr; }
-      .detail { padding-block: 17px; }
+    @media (max-width: 820px) and (min-width: 561px) {
+      .detail-address,
+      .detail-site { grid-column: 1 / -1; }
     }
 
     @media (max-width: 680px) {
       h2 { font-size: clamp(2.2rem, 11vw, 3.5rem); }
       .statement { font-size: clamp(1.9rem, 9vw, 3rem); }
-      .hero-art { height: 70svh; min-height: 560px; }
+      .hero-art { height: min(64svh, 620px); min-height: 520px; }
       .dragon-flight { width: 88%; right: -38%; }
-      .steps { gap: 30px; }
-      .step { padding-top: 20px; }
     }
 
     @media (max-width: 560px) {
@@ -482,13 +494,18 @@
       .lead { font-size: 1.22rem; }
       .hero-actions .button { width: 100%; }
       .quiet-link { margin-inline: auto; }
-      .hero-art { height: 72svh; min-height: 520px; border-radius: 24px; }
+      .hero-art { height: 64svh; min-height: 480px; max-height: 620px; border-radius: 24px; }
       .hero-art .scene { object-position: 50% 50%; }
       .dragon-flight { width: 96%; top: 10%; right: -47%; }
-      section { padding-block: 74px; }
-      #details { padding-block: 64px 74px; }
-      .steps { margin-top: 36px; }
-      .details { border-radius: 28px; }
+      section { padding-block: 52px; }
+      .not-quiz { padding-block: 60px 52px; }
+      .story-section, .tea { padding-block: 52px; }
+      .answer-section { padding-block: 48px; }
+      #details { padding-block: 48px 60px; }
+      .steps { gap: 40px; margin-top: 40px; }
+      .details { padding: 30px 24px; border-radius: 28px; }
+      .details-grid { grid-template-columns: 1fr; margin-top: 32px; }
+      .detail { padding-block: 21px; }
       footer { padding-bottom: 96px; }
       .mobile-cta {
         display: block;
@@ -518,10 +535,10 @@
       .title-line:nth-child(3) { margin-left: .34em; }
       .title-seal { margin-left: .38em; }
       .lead { font-size: 1.08rem; }
-      .hero-art { min-height: 480px; }
+      .hero-art { min-height: 460px; }
       .dragon-flight { width: 104%; right: -56%; }
       .button { padding-inline: 18px; }
-      .details { padding: 24px 19px; }
+      .details { padding: 28px 22px; }
       .mobile-cta { left: 10px; right: 10px; bottom: 9px; }
     }
 
@@ -575,7 +592,7 @@
       </div>
     </section>
 
-    <section>
+    <section class="story-section">
       <div class="shell story-grid">
         <div class="moon-orb" aria-hidden="true" data-reveal></div>
         <div class="story-copy" data-reveal>
@@ -586,7 +603,7 @@
       </div>
     </section>
 
-    <section>
+    <section class="answer-section">
       <div class="shell">
         <div class="answer-card" data-reveal>
           <p class="eyebrow">Важный вопрос</p>
@@ -614,8 +631,8 @@
             <div class="detail detail-compact"><dt>Время</dt><dd>с&nbsp;9:00 до&nbsp;19:00</dd></div>
             <div class="detail detail-compact"><dt>Стоимость</dt><dd>16&nbsp;000&nbsp;рублей</dd></div>
             <div class="detail detail-compact"><dt>Запись</dt><dd><a href="tel:+79683642204">+7&nbsp;(968)&nbsp;364-22-04</a></dd></div>
-            <div class="detail"><dt>Адрес</dt><dd><a href="https://yandex.ru/maps/?text=%D0%B3.%20%D0%94%D0%BE%D0%BB%D0%B3%D0%BE%D0%BF%D1%80%D1%83%D0%B4%D0%BD%D1%8B%D0%B9%2C%20%D0%9B%D0%B8%D1%85%D0%B0%D1%87%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%20%D0%B4%D0%BE%D0%BC%201%2C%20%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81%205" target="_blank" rel="noopener noreferrer">г.&nbsp;Долгопрудный, Лихачевское&nbsp;шоссе, дом&nbsp;1, корпус&nbsp;5</a></dd></div>
-            <div class="detail detail-compact"><dt>Сайт</dt><dd><a href="https://astraedu.ru/" target="_blank" rel="noopener noreferrer">astraedu.ru</a></dd></div>
+            <div class="detail detail-address"><dt>Адрес</dt><dd><a href="https://yandex.ru/maps/?text=%D0%B3.%20%D0%94%D0%BE%D0%BB%D0%B3%D0%BE%D0%BF%D1%80%D1%83%D0%B4%D0%BD%D1%8B%D0%B9%2C%20%D0%9B%D0%B8%D1%85%D0%B0%D1%87%D0%B5%D0%B2%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%20%D0%B4%D0%BE%D0%BC%201%2C%20%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81%205" target="_blank" rel="noopener noreferrer">г.&nbsp;Долгопрудный, Лихачевское&nbsp;шоссе, дом&nbsp;1, корпус&nbsp;5</a></dd></div>
+            <div class="detail detail-compact detail-site"><dt>Сайт</dt><dd><a href="https://astraedu.ru/" target="_blank" rel="noopener noreferrer">astraedu.ru</a></dd></div>
           </dl>
         </div>
       </div>
