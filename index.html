@@ -42,6 +42,8 @@
     body {
       margin: 0;
       min-width: 320px;
+      position: relative;
+      isolation: isolate;
       background:
         radial-gradient(circle at 82% 8%, rgba(67, 112, 151, .28), transparent 30rem),
         linear-gradient(180deg, #07172b 0%, #0b2038 58%, #061321 100%);
@@ -66,6 +68,29 @@
       filter: blur(34px);
       animation: atmosphere 24s ease-in-out infinite alternate;
     }
+
+    .starfield {
+      position: absolute;
+      z-index: 0;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .starfield span {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      background: rgba(255, 244, 207, .92);
+      box-shadow: 0 0 calc(var(--size) * 4) rgba(214, 234, 250, .72);
+      opacity: .08;
+      animation: star-twinkle var(--duration) ease-in-out var(--delay) infinite;
+      will-change: opacity, transform;
+    }
+
+    main, footer { position: relative; z-index: 1; }
 
     a { color: inherit; }
     img { display: block; max-width: 100%; }
@@ -421,6 +446,12 @@
       28%, 62% { opacity: .85; }
       52% { opacity: .32; transform: translate(16px, -18px) scale(1.35); }
     }
+    @keyframes star-twinkle {
+      0%, 100% { opacity: .06; transform: scale(.62); }
+      38% { opacity: var(--peak); transform: scale(1.18); }
+      56% { opacity: .16; transform: scale(.82); }
+      74% { opacity: .28; transform: scale(1); }
+    }
 
     @media (min-width: 1400px) {
       .hero-art { height: min(90svh, 980px); min-height: 720px; }
@@ -554,11 +585,13 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
       [data-reveal] { opacity: 1; transform: none; }
-      body::before, .hero-art .scene, .dragon-flight, .flying-dragon, .dragon-flight::after, .moon-orb, .tea::before, .magic-dust span { animation: none !important; }
+      body::before, .hero-art .scene, .dragon-flight, .flying-dragon, .dragon-flight::after, .moon-orb, .tea::before, .magic-dust span, .starfield span { animation: none !important; }
+      .starfield span { opacity: .22; }
     }
   </style>
 </head>
 <body>
+  <div class="starfield" aria-hidden="true"></div>
   <main>
     <section class="hero" aria-labelledby="page-title">
       <div class="shell hero-grid">
@@ -645,6 +678,22 @@
 
   <script>
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const starfield = document.querySelector('.starfield');
+    const starCount = window.matchMedia('(max-width: 560px)').matches ? 38 : 52;
+    const stars = document.createDocumentFragment();
+    for (let i = 0; i < starCount; i += 1) {
+      const star = document.createElement('span');
+      const x = 2 + ((i * 47 + 11) % 96);
+      const y = 1 + ((i * 67 + (i % 7) * 13) % 98);
+      const size = 1 + ((i * 3) % 4) * .55;
+      const duration = 5.4 + (i % 8) * .72;
+      const delay = -((i % 13) * .83);
+      const peak = .34 + (i % 5) * .1;
+      star.style.cssText = `--x:${x}%;--y:${y}%;--size:${size}px;--duration:${duration}s;--delay:${delay}s;--peak:${peak}`;
+      stars.appendChild(star);
+    }
+    starfield.appendChild(stars);
+
     const items = document.querySelectorAll('[data-reveal]');
     if (reduced || !('IntersectionObserver' in window)) {
       items.forEach((item) => item.classList.add('visible'));
